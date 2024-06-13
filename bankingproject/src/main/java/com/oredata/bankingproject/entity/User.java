@@ -61,9 +61,4 @@ public class User extends BaseEntity implements UserDetails {
         //The method “getUsername()” returns the email address because it is unique information about the user.
         return email;
     }
-    @Override
-    public Long getId() {
-        // UUID'yi Long'a dönüştürmek mantıklı değil, bu nedenle BaseEntity'deki getId() metodunu farklı bir şekilde yönetmelisiniz
-        return null; // veya uygun bir değer döndürün
-    }
 }
