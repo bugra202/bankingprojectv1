@@ -4,4 +4,4 @@ import lombok.Builder;
 
 import java.util.UUID;
 @Builder
-public record AccountSaveDTO(UUID id, String number, String name, String balance) {}
+public record AccountDTO(UUID id, String number, String name, String balance) {}
