@@ -7,5 +7,5 @@ import com.oredata.bankingproject.dto.transaction.TransactionMoneyTransferReq;
 
 public interface TransactionService {
     ResultDto<TransactionDTO> transferBalance(TransactionMoneyTransferReq transferReq);
-    ResultDto<TransactionHistoryDTO> transactionHistory(String debugAccountNumber);
+    ResultDto<TransactionHistoryDTO> transactionHistory(Long accountId);
 }

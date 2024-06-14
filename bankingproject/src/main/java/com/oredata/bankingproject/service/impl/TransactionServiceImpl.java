@@ -62,9 +62,9 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public ResultDto<TransactionHistoryDTO> transactionHistory(String accountNumber) {
+    public ResultDto<TransactionHistoryDTO> transactionHistory(Long accountId) {
 
-        var transactionList = transactionRepository.transactionHistory(accountNumber);
+        var transactionList = transactionRepository.transactionHistory(accountId);
 
         List<TransactionHistoryDTO> transactionDTOs = transactionList.stream()
                 .map(TransactionMapper.INSTANCE::entityToHistoryDTO)

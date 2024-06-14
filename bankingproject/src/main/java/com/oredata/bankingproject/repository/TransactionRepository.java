@@ -14,7 +14,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
             select t from transaction t 
             inner join account a on a.id = t.from_id
             inner join account ac on ac.id = t.to_id
-            where a.number = :accountNumber or ac.number = :accountNumber
+            where a.number = :accountId or ac.number = :accountId
             """, nativeQuery = true)
-    List<Transaction> transactionHistory(String accountNumber);
+    List<Transaction> transactionHistory(Long accountId);
 }

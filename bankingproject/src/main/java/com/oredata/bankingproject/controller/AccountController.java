@@ -38,7 +38,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResultDto<AccountDTO>> search(@PathVariable @NotNull UUID id){
+    public ResponseEntity<ResultDto<AccountDTO>> details(@PathVariable @NotNull UUID id){
         return ResponseEntity.ok(accountService.details(id));
     }
     @DeleteMapping("/{id}")
