@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequestMapping("/api/transactions")
 @RestController
 @Validated
@@ -22,9 +24,9 @@ public class TransactionController {
     public ResponseEntity<ResultDto<TransactionDTO>> transferBalance(@Valid @RequestBody TransactionMoneyTransferReq moneyTransferReq){
         return ResponseEntity.ok(service.transferBalance(moneyTransferReq));
     }
-
     @PostMapping("/account/{debugAccountId}")
-    public ResponseEntity<ResultDto<TransactionHistoryDTO>> transferBalance(@Valid @PathVariable String debugAccountNumber){
-        return ResponseEntity.ok(service.transactionHistory(debugAccountNumber));
+    public ResponseEntity<ResultDto<TransactionHistoryDTO>> transferBalance(@Valid @PathVariable UUID debugAccountId){
+        return ResponseEntity.ok(service.transactionHistory(debugAccountId));
     }
+
 }

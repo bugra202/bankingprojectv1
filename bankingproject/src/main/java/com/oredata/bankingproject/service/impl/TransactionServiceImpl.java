@@ -6,6 +6,7 @@ import com.oredata.bankingproject.common.util.ConvertUtils;
 import com.oredata.bankingproject.dto.common.ResultDto;
 import com.oredata.bankingproject.dto.transaction.TransactionDTO;
 import com.oredata.bankingproject.dto.transaction.TransactionHistoryDTO;
+import com.oredata.bankingproject.dto.transaction.TransactionHistoryResultDb;
 import com.oredata.bankingproject.dto.transaction.TransactionMoneyTransferReq;
 import com.oredata.bankingproject.entity.Account;
 import com.oredata.bankingproject.entity.Transaction;
@@ -22,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,16 +64,13 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public ResultDto<TransactionHistoryDTO> transactionHistory(Long accountId) {
+    public ResultDto<TransactionHistoryDTO> transactionHistory(UUID accountId) {
 
         var transactionList = transactionRepository.transactionHistory(accountId);
 
-        List<TransactionHistoryDTO> transactionDTOs = transactionList.stream()
-                .map(TransactionMapper.INSTANCE::entityToHistoryDTO)
-                .sorted((t1, t2) -> t2.transactionDate().compareTo(t1.transactionDate()))
-                .collect(Collectors.toList());
+        var transactions = TransactionMapper.INSTANCE.dbResultToHistoryDTO(transactionList);
 
-        return ConvertUtils.listToResponseDtoFunction.apply(transactionDTOs);
+        return ConvertUtils.listToResponseDtoFunction.apply(transactions);
 
     }
 }

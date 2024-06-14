@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface AccountRepository extends JpaRepository<Account,UUID> {
     String ACCOUNT_GRID_QUERY = """
-            select a.id as id, a.number as number, a.name as name, a.balance as balance
+            select a.id::text as id, a.number as number, a.name as name, a.balance as balance
             from account a
             where
             (:#{#searchFormDto.number} is null or a.number LIKE concat('%', :#{#searchFormDto.number}, '%'))

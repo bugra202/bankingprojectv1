@@ -20,6 +20,8 @@ public interface AccountMapper {
     AccountDTO entityToDTO(Account account);
     @Mapping(target = "id", ignore = true)
     void updateRequestToEntity(@MappingTarget Account account, AccountUpdateRequest request);
+    @Mapping(target = "id", expression = "java(java.util.UUID.fromString(accountResultDb.getId()))")
+    AccountDTO dbResultToDTO(AccountResultDb accountResultDb);
     List<AccountDTO> dbResultToDTO(List<AccountResultDb> accountResultDbList);
 
 }
