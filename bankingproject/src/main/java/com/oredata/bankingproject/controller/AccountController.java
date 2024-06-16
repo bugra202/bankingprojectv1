@@ -42,7 +42,7 @@ public class AccountController {
         return ResponseEntity.ok(accountService.details(id));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable @NotNull @Positive UUID id){
+    public ResponseEntity<Object> delete(@PathVariable @NotNull UUID id){
         return ResponseEntity.ok(accountService.delete(id));
     }
 }

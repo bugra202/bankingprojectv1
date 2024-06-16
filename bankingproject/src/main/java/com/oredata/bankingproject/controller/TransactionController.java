@@ -25,7 +25,7 @@ public class TransactionController {
         return ResponseEntity.ok(service.transferBalance(moneyTransferReq));
     }
     @PostMapping("/account/{debugAccountId}")
-    public ResponseEntity<ResultDto<TransactionHistoryDTO>> transferBalance(@Valid @PathVariable UUID debugAccountId){
+    public ResponseEntity<ResultDto<TransactionHistoryDTO>> transferHistory(@Valid @PathVariable UUID debugAccountId){
         return ResponseEntity.ok(service.transactionHistory(debugAccountId));
     }
 
